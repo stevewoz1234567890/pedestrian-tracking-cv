@@ -44,15 +44,6 @@ env/
 ehthumbs.db
 Thumbs.db
 
-# Project specific
-output/
-input_images/
-*.zip
-*.pdf
-*.png
-*.jpg
-*.jpeg
-
 # Keep original project files
 !PS5_report.zip
 

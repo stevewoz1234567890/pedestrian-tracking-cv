@@ -1,0 +1,36 @@
+% A line starting with a % character is a comment and wont be included in the report.
+% Always use two backslashes like \\ to insert a new line. Take a look at the example below.
+For multiple target tracking, I implemented a system using multiple Kalman Filters (one per target) rather than Particle Filters. Here's what I did and why: \\
+
+\textbf{Implementation Approach:} \\
+1. \textbf{Multiple Kalman Filters}: Created separate KF instances for each detected person (up to 3 targets) \\
+2. \textbf{HOG Detection}: Used Histogram of Oriented Gradients (HOG) detector to identify people in each frame \\
+3. \textbf{Target Association}: Associated detections with existing trackers based on proximity to previous positions \\
+4. \textbf{Independent Tracking}: Each target was tracked independently with its own state and covariance \\
+
+\textbf{KF vs PF for Multiple Targets:} \\
+
+\textbf{Kalman Filter Advantages:} \\
+- \textbf{Computational Efficiency}: Much faster than particle filters, especially with multiple targets \\
+- \textbf{Deterministic}: Predictable behavior, easier to debug \\
+- \textbf{Linear Dynamics}: Well-suited for smooth motion prediction \\
+- \textbf{Memory Efficient}: Only stores mean and covariance per target \\
+
+\textbf{Particle Filter Disadvantages for Multiple Targets:} \\
+- \textbf{Computational Cost}: Would require 100-300 particles per target, leading to thousands of particles total \\
+- \textbf{Memory Intensive}: Each particle stores full state information \\
+- \textbf{Resampling Complexity}: More complex resampling when targets interact \\
+
+\textbf{Why KF Worked Best:} \\
+1. \textbf{Scalability}: Can easily handle 3+ targets without performance degradation \\
+2. \textbf{Real-time Performance}: Fast enough for video processing \\
+3. \textbf{Robust Association}: Simple distance-based association works well with KF predictions \\
+4. \textbf{Smooth Tracking}: Linear motion model provides smooth trajectories \\
+
+\textbf{Modifications for Multiple Targets:} \\
+- \textbf{Target Initialization}: Only initialize trackers on first frame with strongest detections \\
+- \textbf{Association Logic}: Match detections to trackers based on minimum distance \\
+- \textbf{Independent States}: Each tracker maintains separate state and covariance \\
+- \textbf{Visualization}: Draw separate bounding boxes and labels for each target \\
+
+The KF approach proved superior for multiple target tracking due to its computational efficiency and deterministic behavior, making it ideal for real-time applications with multiple moving objects.

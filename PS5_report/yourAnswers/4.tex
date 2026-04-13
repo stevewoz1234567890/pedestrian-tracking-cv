@@ -1,19 +1,2 @@
-% A line starting with a % character is a comment and wont be included in the report.
-% Always use two backslashes like \\ to insert a new line. Take a look at the example below.
-To handle occlusions and continue tracking, I modified the Particle Filter class in several key ways: \\
-
-1. \textbf{Expanded Particle State to 4D}: Instead of tracking only position (x, y), the MDParticleFilter now tracks position AND size (x, y, width, height). This allows the tracker to adapt to size changes that occur during occlusions and perspective changes. \\
-
-2. \textbf{Multi-Dimensional Dynamics}: Added separate noise models for position and size:
-   - Position noise: $\sigma_{dyn}$ for x and y coordinates
-   - Size noise: $\sigma_{dyn}/2$ for width and height (smaller noise to prevent excessive size changes) \\
-
-3. \textbf{Adaptive Template Matching}: The particle filter now extracts patches of varying sizes from the frame and resizes them to match the template for comparison. This allows the tracker to handle objects that appear larger or smaller due to perspective changes. \\
-
-4. \textbf{Size-Constrained Particles}: Implemented bounds checking to ensure particles maintain reasonable sizes (minimum 10 pixels, maximum half the frame dimensions) to prevent degenerate cases. \\
-
-5. \textbf{Weighted Mean Size Updates}: The appearance model update now uses the weighted mean of both position AND size to determine the best patch for template adaptation. \\
-
-6. \textbf{Enhanced Rendering}: The tracking rectangle now uses the weighted mean size rather than a fixed template size, providing better visualization of the adaptive tracking. \\
-
-These modifications allow the tracker to maintain tracking even when the target is partially occluded or changes size due to perspective, as the particle filter can adapt both position and scale simultaneously.
+% Write your answer here. End lines with \\ to force a line break in Beamer.
+\emph{[Your discussion of occlusions and \texttt{MDParticleFilter} changes.]}

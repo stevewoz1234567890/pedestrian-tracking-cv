@@ -44,9 +44,6 @@ env/
 ehthumbs.db
 Thumbs.db
 
-# Keep original project files
-!PS5_report.zip
-
 # Logs
 *.log
 logs/
